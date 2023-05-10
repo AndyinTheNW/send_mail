@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<nfeProc xmlns="http://www.portalfiscal.inf.br/nfe" versao="4.00">
+    <NFe xmlns="http://www.portalfiscal.inf.br/nfe">
+        <infNFe Id="NFe32230442611727000317550020001001921234269482" versao="4.00">
+            <ide>
+                <cUF>32</cUF>
+                <cNF>23426948</cNF>
+                <natOp>Venda merc.adq.receb.de terceiros</natOp>
+                <mod>55</mod>
+                <serie>2</serie>
+                <nNF>100192</nNF>
+                <dhEmi>2023-04-27T11:04:30-03:00</dhEmi>
+                <tpNF>1</tpNF>
+                <idDest>2</idDest>
+                <cMunFG>3201308</cMunFG>
+                <tpImp>1</tpImp>
+                <tpEmis>1</tpEmis>
+                <cDV>2</cDV>
+                <tpAmb>2</tpAmb>
+                <finNFe>1</finNFe>
+                <indFinal>1</indFinal>
+                <indPres>9</indPres>
+                <indIntermed>0</indIntermed>
+                <procEmi>0</procEmi>
+                <verProc>3.116.0</verProc>
+            </ide>
+            <emit>
+                <CNPJ>42611727000317</CNPJ>
+                <xNome>Great Wall Motor Brasil LTDA</xNome>
+                <xFant>PORTO DE VITÓRIA</xFant>
+                <enderEmit>
+                    <xLgr>Rodovia Governador Mario Covas</xLgr>
+                    <nro>3101</nro>
+                    <xCpl>km 282</xCpl>
+                    <xBairro>Padre Mathias</xBairro>
+                    <cMun>3201308</cMun>
+                    <xMun>Cariacica</xMun>
+                    <UF>ES</UF>
+                    <CEP>29157100</CEP>
+                    <xPais>Brasil</xPais>
+                </enderEmit>
+                <IE>084000775</IE>
+                <IEST>808014851112</IEST>
+                <CRT>3</CRT>
+            </emit>
+            <dest>
+                <CPF>57283227350</CPF>
+                <xNome>NF-E EMITIDA EM AMBIENTE DE HOMOLOGACAO - SEM VALOR FISCAL</xNome>
+                <enderDest>
+                    <xLgr>Rua Aguas de Março</xLgr>
+                    <nro>100</nro>
+                    <xBairro>Agua Funda</xBairro>
+                    <cMun>3550308</cMun>
+                    <xMun>São Paulo</xMun>
+                    <UF>SP</UF>
+                    <CEP>04156020</CEP>
+                    <cPais>1058</cPais>
+                    <xPais>Brasil</xPais>
+                </enderDest>
+                <indIEDest>9</indIEDest>
+            </dest>
+            <entrega>
+                <CNPJ>06352893002911</CNPJ>
+                <xNome>CARRERA ACELERA VEÍCULOS</xNome>
+                <xLgr>AL ARAGUAIA</xLgr>
+                <nro>2299</nro>
+                <xBairro>ALPHAVILLE INDUSTRIAL</xBairro>
+                <cMun>3505708</cMun>
+                <xMun>BARUERI</xMun>
+                <UF>SP</UF>
+                <CEP>06455000</CEP>
+                <cPais>1058</cPais>
+                <xPais>Brasil</xPais>
+                <email>anderson.pereira@bravocorp.com.br</email>
+                <IE>206715110111</IE>
+            </entrega>
+            <det nItem="1">
+                <prod>
+                    <cProd>KN3182GJ7006Y00002</cProd>
+                    <cEAN>SEM GTIN</cEAN>
+                    <xProd>Veículo automóvel HAVAL H6 GT PHEV</xProd>
+                    <NCM>87036000</NCM>
+                    <CEST>2500700</CEST>
+                    <CFOP>6102</CFOP>
+                    <uCom>UN</uCom>
+                    <qCom>1.0000</qCom>
+                    <vUnCom>286612.2000000000</vUnCom>
+                    <vProd>286612.20</vProd>
+                    <cEANTrib>SEM GTIN</cEANTrib>
+                    <uTrib>UN</uTrib>
+                    <qTrib>1.0000</qTrib>
+                    <vUnTrib>286612.2000000000</vUnTrib>
+                    <indTot>1</indTot>
+                    <xPed>gdm or ecomer #</xPed>
+                    <veicProd>
+                        <tpOp>2</tpOp>
+                        <chassi>LGWFFUA5006Y00012</chassi>
+                        <cCor>02</cCor>
+                        <xCor>AZUL TOPÃ¡ZIO</xCor>
+                        <pot>393</pot>
+                        <cilin>1499</cilin>
+                        <pesoL>000002470</pesoL>
+                        <pesoB>000002470</pesoB>
+                        <nSerie>006Y00012</nSerie>
+                        <tpComb>18</tpComb>
+                        <nMotor>ABC123456</nMotor>
+                        <CMT>3,22</CMT>
+                        <dist>2738</dist>
+                        <anoMod>2023</anoMod>
+                        <anoFab>2022</anoFab>
+                        <tpPint>P</tpPint>
+                        <tpVeic>13</tpVeic>
+                        <espVeic>3</espVeic>
+                        <VIN>N</VIN>
+                        <condVeic>1</condVeic>
+                        <cMod>200923</cMod>
+                        <cCorDENATRAN>02</cCorDENATRAN>
+                        <lota>005</lota>
+                        <tpRest>2</tpRest>
+                    </veicProd>
+                </prod>
+                <imposto>
+                    <ICMS>
+                        <ICMSPart>
+                            <orig>7</orig>
+                            <CST>90</CST>
+                            <modBC>3</modBC>
+                            <vBC>232263.20</vBC>
+                            <pICMS>12.0000</pICMS>
+                            <vICMS>27871.58</vICMS>
+                            <modBCST>6</modBCST>
+                            <vBCST>66598.90</vBCST>
+                            <pICMSST>12.0000</pICMSST>
+                            <vICMSST>7991.87</vICMSST>
+                            <pBCOp>100.0000</pBCOp>
+                            <UFST>SP</UFST>
+                        </ICMSPart>
+                    </ICMS>
+                    <IPI>
+                        <cEnq>999</cEnq>
+                        <IPITrib>
+                            <CST>50</CST>
+                            <vBC>259702.21</vBC>
+                            <pIPI>4.7700</pIPI>
+                            <vIPI>12387.80</vIPI>
+                        </IPITrib>
+                    </IPI>
+                    <PIS>
+                        <PISNT>
+                            <CST>04</CST>
+                        </PISNT>
+                    </PIS>
+                    <COFINS>
+                        <COFINSNT>
+                            <CST>04</CST>
+                        </COFINSNT>
+                    </COFINS>
+                </imposto>
+            </det>
+            <total>
+                <ICMSTot>
+                    <vBC>232263.20</vBC>
+                    <vICMS>27871.58</vICMS>
+                    <vICMSDeson>0.00</vICMSDeson>
+                    <vFCP>0.00</vFCP>
+                    <vBCST>66598.90</vBCST>
+                    <vST>7991.87</vST>
+                    <vFCPST>0.00</vFCPST>
+                    <vFCPSTRet>0.00</vFCPSTRet>
+                    <vProd>286612.20</vProd>
+                    <vFrete>0.00</vFrete>
+                    <vSeg>0.00</vSeg>
+                    <vDesc>0.00</vDesc>
+                    <vII>0.00</vII>
+                    <vIPI>12387.80</vIPI>
+                    <vIPIDevol>0.00</vIPIDevol>
+                    <vPIS>0.00</vPIS>
+                    <vCOFINS>0.00</vCOFINS>
+                    <vOutro>0.00</vOutro>
+                    <vNF>299000.00</vNF>
+                </ICMSTot>
+            </total>
+            <transp>
+                <modFrete>0</modFrete>
+                <transporta>
+                    <CNPJ>92644483000185</CNPJ>
+                    <xNome>TRANSPORTES GABARDO LTDA</xNome>
+                    <IE>0963903896</IE>
+                    <xEnder>R VITOR VALPIRIO 715</xEnder>
+                    <xMun>PORTO ALEGRE</xMun>
+                    <UF>RS</UF>
+                </transporta>
+            </transp>
+            <pag>
+                <detPag>
+                    <indPag>0</indPag>
+                    <tPag>18</tPag>
+                    <vPag>299000.00</vPag>
+                </detPag>
+            </pag>
+            <infAdic />
+            <infRespTec>
+                <CNPJ>00910509000171</CNPJ>
+                <xContato>Douglas de Souza Pereira</xContato>
+                <email>douglas.pereira@thomsonreuters.com</email>
+                <fone>1147009050</fone>
+            </infRespTec>
+        </infNFe>
+        <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
+            <SignedInfo>
+                <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" />
+                <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" />
+                <Reference URI="#NFe32230442611727000317550020001001921234269482">
+                    <Transforms>
+                        <Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" />
+                        <Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315" />
+                    </Transforms>
+                    <DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+                    <DigestValue>VbhEYNRR6hNap0UT6ItQM6ON2/w=</DigestValue>
+                </Reference>
+            </SignedInfo>
+            <SignatureValue>
+                AsiirhL0hbbGEZMm9BsHycgI+5O4qh49W9McYBZAV8Z5sCGApjRG6QWlrp2MM64m7FLishs7SJu72VmxQBiIZg8TOTrY2Rdei0+uZsZ6hjKMfXdpd8X40UmnL32LmtErwHtPIaGHOrc0dJpowIEucajVNU7/ROns/FGlOb091GXz0MOkHdVH4mmtoNni/L6iforZV8DcgFSwzGkj7JitD/T3YXq/WkHELlWjX9J4uT5mDNzE1t88w0UEbY7udHd2wYkYsJiMF9najUONUZDVWcuW/QpDCdByBwxwF+MBh9EooWYry9MNItboPAkcpzUCv8k3UWU97PFWeI4/QYnk/A==</SignatureValue>
+            <KeyInfo>
+                <X509Data>
+                    <X509Certificate>
+                        MIIIATCCBemgAwIBAgIICOSKqUaAb18wDQYJKoZIhvcNAQELBQAwdTELMAkGA1UEBhMCQlIxEzARBgNVBAoMCklDUC1CcmFzaWwxNjA0BgNVBAsMLVNlY3JldGFyaWEgZGEgUmVjZWl0YSBGZWRlcmFsIGRvIEJyYXNpbCAtIFJGQjEZMBcGA1UEAwwQQUMgU0VSQVNBIFJGQiB2NTAeFw0yMjA4MjYxNDM1MDBaFw0yMzA4MjYxNDM0NTlaMIIBGDELMAkGA1UEBhMCQlIxCzAJBgNVBAgMAlJTMRUwEwYDVQQHDAxQb3J0byBBbGVncmUxEzARBgNVBAoMCklDUC1CcmFzaWwxNjA0BgNVBAsMLVNlY3JldGFyaWEgZGEgUmVjZWl0YSBGZWRlcmFsIGRvIEJyYXNpbCAtIFJGQjEWMBQGA1UECwwNUkZCIGUtQ05QSiBBMTEWMBQGA1UECwwNQUMgU0VSQVNBIFJGQjEXMBUGA1UECwwONjIxNzM2MjAwMDAxODAxGTAXBgNVBAsMEFZJREVPQ09ORkVSRU5DSUExNDAyBgNVBAMMK0dSRUFUIFdBTEwgTU9UT1IgQlJBU0lMIExUREE6NDI2MTE3MjcwMDAxNTUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCaNBz+/a/GEGoTkEp5f+fQ144US39d6rt8+gy3I2mCNSmiZwaIDEWjSUV4HMDM1UjOHnhbs9dVg/XY1l5RxcQ1U0ynY+eyzWBiuMIA1rYUpvkU/XKhnLqCbGy0WfI6mZ89BjK50kMlQRW0uGk3bzSIBjBCRfRilizJEOuvmZIiGhHUoysCRjbmbHCNWHj/PCwnCjUzSmu4o1R12IN2GFuaVkwTV8p2mmCUYmo2v4RRf1xvzxSR1UsFDNgT9S4rLQJkmkf7wDiws7B6UZJCtluZFzIQstBUUZ05RjTfCpp/XMfrUGG46Cgo9bvzGb/zA+PwcFnir4HsmTFcq96DzBSZAgMBAAGjggLuMIIC6jAJBgNVHRMEAjAAMB8GA1UdIwQYMBaAFOzxQVFXqOY66V6zoCL5CIq1OoePMIGZBggrBgEFBQcBAQSBjDCBiTBIBggrBgEFBQcwAoY8aHR0cDovL3d3dy5jZXJ0aWZpY2Fkb2RpZ2l0YWwuY29tLmJyL2NhZGVpYXMvc2VyYXNhcmZidjUucDdiMD0GCCsGAQUFBzABhjFodHRwOi8vb2NzcC5jZXJ0aWZpY2Fkb2RpZ2l0YWwuY29tLmJyL3NlcmFzYXJmYnY1MIG+BgNVHREEgbYwgbOBIFJPRFJJR08uQUxNRUlEQUBHV01NT1RPUlMuQ09NLkJSoBsGBWBMAQMCoBITEENISUVOIENISUggU0hFTkegGQYFYEwBAwOgEBMONDI2MTE3MjcwMDAxNTWgPgYFYEwBAwSgNRMzMTQwNTE5NzkyMTU2MTM5NTgwMzAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwoBcGBWBMAQMHoA4TDDAwMDAwMDAwMDAwMDBxBgNVHSAEajBoMGYGBmBMAQIBDTBcMFoGCCsGAQUFBwIBFk5odHRwOi8vcHVibGljYWNhby5jZXJ0aWZpY2Fkb2RpZ2l0YWwuY29tLmJyL3JlcG9zaXRvcmlvL2RwYy9kZWNsYXJhY2FvLXJmYi5wZGYwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMEMIGdBgNVHR8EgZUwgZIwSqBIoEaGRGh0dHA6Ly93d3cuY2VydGlmaWNhZG9kaWdpdGFsLmNvbS5ici9yZXBvc2l0b3Jpby9sY3Ivc2VyYXNhcmZidjUuY3JsMESgQqBAhj5odHRwOi8vbGNyLmNlcnRpZmljYWRvcy5jb20uYnIvcmVwb3NpdG9yaW8vbGNyL3NlcmFzYXJmYnY1LmNybDAdBgNVHQ4EFgQUvhaRu0O5YA7/Fr2eJgdBCM+2gHIwDgYDVR0PAQH/BAQDAgXgMA0GCSqGSIb3DQEBCwUAA4ICAQCdqTxSHRlW0dE5SsOznXQuVZXf3wm4JlnXJutfHhh0Ll9PE22G2uednYZM2eJrGW/g0wK7BYXIiPeL/54/gWSRiQa4mR8bgWjBzNgA74wGkq3dO99ikajJJUC3SghDrEjM4mwgplSefpYSbCZv/iGp+noIfAQUmmvveLSjEExw9UF7FJgWAGsuB4b4twiNCd1ldAyolsAZlQurBcHhiIbn2alBPObxW6hwj4kGaso1IWmLxMhERxi/0dWLxbGypdf0Es/auZrRxBpqjJnWKzAxNISZFTqXXsmJMTh36LFF4Mvybmf5WUaUXq7G6qT2A1k3sCb3lE+LB0KjhqGyJvvIpf1L0mxsd0RgjQTikY9SBbk5oNVjZKnoTSBi1FGbl63WjRMG2elqeMu5KTy0wCAGQpBOhUVkS9k2ZBDzXF0xWyaiUq1tkCbQqpII6Bv6jptr2h/RwGSG1tLVBWRNz81RovAYtthr7pSM5eQlGDNC+AiAJ+//SsHcLYwBbopfuHzCM3P6v8Uah4bnc0mV9Nvzv73LgPfXeCjzGrHVsrg3aHeE6F1MQrFFULCmq7TjKfBZavsNc5GbjDxgmnmrViBcRsD8GhORl7tM8OslDVA2lnVquaXKn3oM9FcTEK0jDrTH5Od7epsdeFTW8m1ouW51AT103fkdECsA22oFfQuKqw==</X509Certificate>
+                </X509Data>
+            </KeyInfo>
+        </Signature>
+    </NFe>
+    <protNFe xmlns:ns2="http://www.w3.org/2000/09/xmldsig#" versao="4.00">
+        <infProt>
+            <tpAmb>2</tpAmb>
+            <verAplic>SVRS202304261847</verAplic>
+            <chNFe>32230442611727000317550020001001921234269482</chNFe>
+            <dhRecbto>2023-04-27T11:04:33-03:00</dhRecbto>
+            <nProt>332230000047506</nProt>
+            <digVal>VbhEYNRR6hNap0UT6ItQM6ON2/w=</digVal>
+            <cStat>100</cStat>
+            <xMotivo>Autorizado o uso da NF-e</xMotivo>
+        </infProt>
+    </protNFe>
+</nfeProc>
