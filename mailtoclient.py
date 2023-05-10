@@ -12,25 +12,25 @@ from email.mime.image import MIMEImage
 smtp_host = 'smtp.office365.com'
 smtp_port = 587
 
-print ( f'configurando o servidor SMTP para {smtp_host}:{smtp_port}')
+print(f'configurando o servidor SMTP para {smtp_host}:{smtp_port}')
 
 # Dados da conta de e-mail de origem
 
-email_de = 'andersonalmeida1008@outlook.com'
+email_de = 'DestinoEmpresaXML@outlook.com.br'
 senha = '@Roma!@#23'
 
 # Dados da conta de e-mail de destino
 
-email_para = 'DestinoEmpresaXML@outlook.com.br'
+email_para = 'andersonalmeida1008@outlook.com'
 
-print ( f' Email padrão para recebimento: {email_para}')
+print(f' Email padrão para recebimento: {email_para}')
 
 # Diretório onde estão os arquivos no linux 'home/pyfiles
-diretorio = os.path.join(os.path.expanduser('~'), 'pyfiles') 
-   
+diretorio = os.path.join(os.path.expanduser('~'), 'pyfiles')
+
 imagem_caminho = os.path.join(os.path.expanduser('~'), 'pyfiles', 'car.jpeg')
 
-print ( f'localizando os arquivos no diretório {diretorio}')
+print(f'localizando os arquivos no diretório {diretorio}')
 
 # Diretório onde os arquivos enviados serão armazenados
 todos_enviados_dir = os.path.join(diretorio, 'enviados')
@@ -44,12 +44,11 @@ if not os.path.exists(todos_enviados_dir):
 if not os.path.exists(enviados_cliente_dir):
     os.makedirs(enviados_cliente_dir)
 
-print ( f'criando os diretórios {todos_enviados_dir} e {enviados_cliente_dir}')
+print(f'criando os diretórios {todos_enviados_dir} e {enviados_cliente_dir}')
 
 # Percorre a pasta em busca de arquivos XML
 
-for arquivo in os.listdir():
-    if arquivo.endswith('.xml'):
+for arquivo in (f for f in os.listdir(diretorio) if f.endswith('.xml')):
 
         # Abre o arquivo XML e procura pela tag 'cfop' pelo caminho nfeProc → NFe → infNFe → det → prod → CFOP
         caminho_arquivo = os.path.join(diretorio, arquivo)
@@ -88,7 +87,6 @@ for arquivo in os.listdir():
         print(f"Encontrado o CFOP {cfop} no arquivo {arquivo}")
 
         # Se o campo 'cfop' = 6102, procurar pela tag 'email' e enviar o e-mail para cliente
-        cliente_email = None
         if cfop == '6102':
             if infNFe_element is not None:
                 entrega_element = infNFe_element.find('ns:entrega', namespaces)
@@ -112,91 +110,98 @@ for arquivo in os.listdir():
         nome_pdf = arquivo_sem_sufixo.replace('.xml', '.pdf')
         caminho_pdf = os.path.join(diretorio, nome_pdf)
 
-        print ( f'localizando o arquivo PDF {caminho_pdf}')
+        print(f'localizando o arquivo PDF {caminho_pdf}')
 
-        # Enviar e-mail para a empresa e, se necessário, para o cliente
-        destinatarios = [email_para]
 
-        if cliente_email is not None:
-            destinatarios.append(cliente_email)
+# Enviar e-mail para a empresa e, se necessário, para o cliente
+destinatarios = [email_para]
 
-        server = smtplib.SMTP(smtp_host, smtp_port)
-        server.starttls()
-        server.login(email_de, senha)  # Faz login no servidor
+if cliente_email is not None:
+    destinatarios.append(cliente_email)
 
-        for email_destino in destinatarios:
-            mensagem = f"Enviando o arquivo {arquivo} para {email_destino}"
-            if email_destino == cliente_email:
-                mensagem += " (cliente)"
-            print(mensagem)
+server = smtplib.SMTP(smtp_host, smtp_port)
+server.starttls()
+server.login(email_de, senha)  # Faz login no servidor
 
-            print ( f'criando a mensagem de e-mail')
+for email_destino in destinatarios:
+    mensagem = f"Enviando o arquivo {arquivo} para {email_destino}"
+    if email_destino == cliente_email:
+        mensagem += " (cliente)"
+    print(mensagem)
 
-            # Cria a mensagem de e-mail
+    # Cria a mensagem de e-mail
+    msg = MIMEMultipart()
+    msg['From'] = email_de
+    msg['To'] = email_destino
+    msg['Subject'] = 'Arquivos XML e PDF enviados por e-mail'
 
-            msg = MIMEMultipart()
-            msg['From'] = email_de
-            msg['To'] = email_destino
-            msg['Subject'] = 'Arquivos XML e PDF enviados por e-mail'
+    # Adicione o corpo do e-mail
+    if email_destino == cliente_email:
+        with open(imagem_caminho, 'rb') as img_file:
+            img_data = img_file.read()
+            image = MIMEImage(img_data)
+            image.add_header('Content-ID', '<cars_image>')
+            msg.attach(image)
+            
+        corpo_email = f"""
+<html>
+  <body>
+    <p>Olá,</p>
+    <p>Segue em anexo o arquivo XML e o arquivo PDF.</p>
+    <p><img src="cid:cars_image" alt="cars image"></p>
+    <p>Atenciosamente,</p>
+    <p>Anderson</p>
+  </body>
+</html>
+"""
+        msg.attach(MIMEText(corpo_email, 'html'))
+    else:
+        corpo_email = f'Olá Empresa,\n\nSegue em anexo o arquivo XML ({arquivo}) e o arquivo PDF ({nome_pdf}).\n\nAtenciosamente,\nAnderson'
+        msg.attach(MIMEText(corpo_email, 'plain'))
 
-            # Adicione o corpo do e-mail
-            with open(imagem_caminho, 'rb') as img_file:
-                img_data = img_file.read()
-                image = MIMEImage(img_data)
-                image.add_header('Content-ID', '<cars_image>')
-                msg.attach(image)
+    with open(caminho_arquivo, 'rb') as xml_file:
+        anexo = MIMEApplication(xml_file.read(), _subtype='xml')
+        anexo.add_header('Content-Disposition', 'attachment', filename=arquivo)
+        msg.attach(anexo)
 
-            if email_destino == cliente_email:
-                corpo_email = f"""
-    <html>
-      <body>
-        <p>Olá,</p>
-        <p>Segue em anexo o arquivo XML e o arquivo PDF.</p>
-        <p><img src="cid:cars_image" alt="cars image"></p>
-        <p>Atenciosamente,</p>
-        <p>Anderson</p>
-      </body>
-    </html>
-    """
-                msg.attach(MIMEText(corpo_email, 'html'))
-            else:
-                corpo_email = f'Olá Empresa,\n\nSegue em anexo o arquivo XML ({arquivo}) e o arquivo PDF ({nome_pdf}).\n\nAtenciosamente,\nAnderson'
-                msg.attach(MIMEText(corpo_email, 'plain'))
-                if os.path.exists(caminho_pdf):
-                    with open(caminho_pdf, 'rb') as pdf_file:
-                        anexo = MIMEApplication(pdf_file.read(), _subtype='pdf')
-                anexo.add_header('Content-Disposition',
-                                     'attachment', filename=nome_pdf)
-                msg.attach(anexo)
-        else:
-            print(f'Arquivo {nome_pdf} não encontrado')
+    if os.path.exists(caminho_pdf):
+        with open(caminho_pdf, 'rb') as pdf_file:
+            anexo = MIMEApplication(pdf_file.read(), _subtype='pdf')
+            anexo.add_header('Content-Disposition',
+                             'attachment', filename=nome_pdf)
+            msg.attach(anexo)
+    else:
+        print(f'Arquivo {nome_pdf} não encontrado')
 
-            # Envie o e-mail
-            server.sendmail(email_de, email_destino, msg.as_string())
-        server.quit()
-        print(
-            f'Arquivo {arquivo} enviado com sucesso para {email_destino}')
+    # Envie o e-mail
+    server.sendmail(email_de, email_destino, msg.as_string())
+    print(f'Arquivo {arquivo} enviado com sucesso para {email_destino}')
 
-        # Move o arquivo enviado para a pasta 'todos_enviados'
-        shutil.move(caminho_arquivo, todos_enviados_dir)
-        if os.path.exists(caminho_pdf):
-            shutil.move(caminho_pdf, todos_enviados_dir)
-        print(f'Arquivo {arquivo} movido para {todos_enviados_dir}')
+server.quit()
 
-        # Se o arquivo XML foi enviado para o cliente, copiar xml e pdf e enviar para a pasta 'enviados_cliente'
-        if cliente_email is not None:
-            shutil.copy(os.path.join(todos_enviados_dir, arquivo),
-                        enviados_cliente_dir)
-            if os.path.exists(caminho_pdf):
-                shutil.copy(os.path.join(todos_enviados_dir, nome_pdf),
-                            enviados_cliente_dir)
+print(f'Arquivo {arquivo} enviado com sucesso para {email_destino}')
 
-            print(
-                f'Arquivo {arquivo} copiado para {enviados_cliente_dir}')
+# Move o arquivo enviado para a pasta 'todos_enviados'
+
+
+shutil.move(caminho_arquivo, todos_enviados_dir)
+if os.path.exists(caminho_pdf):
+    shutil.move(caminho_pdf, todos_enviados_dir)
+    print(f'Arquivo {arquivo} movido para {todos_enviados_dir}')
+
+    # Se o arquivo XML foi enviado para o cliente, copiar xml e pdf e enviar para a pasta 'enviados_cliente'
+    # if cliente_email is not None:
+    shutil.copy(os.path.join(todos_enviados_dir, arquivo),
+                enviados_cliente_dir)
+    if os.path.exists(caminho_pdf):
+        shutil.copy(os.path.join(todos_enviados_dir, nome_pdf),
+                    enviados_cliente_dir)
+
+    print(
+        f'Arquivo {arquivo} copiado para {enviados_cliente_dir}')
 
 # enviando pdf para a pasta enviados_cliente
-for arquivo in os.listdir(todos_enviados_dir):
-    if arquivo.endswith('.pdf'):
-        shutil.copy(os.path.join(todos_enviados_dir, arquivo),
-                    enviados_cliente_dir)
-        print(f'Arquivo {arquivo} copiado para {enviados_cliente_dir}')
+
+for arquivo in (f for f in os.listdir(todos_enviados_dir) if f.endswith('.pdf')):
+    shutil.copy(os.path.join(todos_enviados_dir, arquivo), enviados_cliente_dir)
+    print(f'Arquivo {arquivo} copiado para {enviados_cliente_dir}')
