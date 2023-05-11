@@ -55,12 +55,12 @@ Os arquivos XML e PDF serão enviados por e-mail para o endereço de e-mail padr
 
 5. Loop principal: O programa entra em um loop infinito que verifica periodicamente se existem arquivos XML no diretório especificado. Se houver, realiza as seguintes etapas:
 
-   1. Analisa o arquivo XML: O programa abre o arquivo XML, lida com o namespace e busca por elementos específicos dentro do XML, como 'cfop' e 'ncm'.
+   . Analisa o arquivo XML: O programa abre o arquivo XML, lida com o namespace e busca por elementos específicos dentro do XML, como 'cfop' e 'ncm'.
 
-   2. Verificação dos elementos encontrados: Verifica se o valor de 'cfop' é igual a '6102' e se o valor de 'ncm' começa com '8703'. Se as condições forem atendidas, o programa procura pelo e-mail do cliente no arquivo XML.
+   . Verificação dos elementos encontrados: Verifica se o valor de 'cfop' é igual a '6102' e se o valor de 'ncm' começa com '8703'. Se as condições forem atendidas, o programa procura pelo e-mail do cliente no arquivo XML.
 
-   3. Envio de e-mails: O programa utiliza o servidor SMTP para enviar e-mails contendo os arquivos XML e PDF anexados. Os e-mails são enviados tanto para a empresa quanto, se necessário, para o cliente. O corpo do e-mail varia dependendo do destinatário.
+   . Envio de e-mails: O programa utiliza o servidor SMTP para enviar e-mails contendo os arquivos XML e PDF anexados. Os e-mails são enviados tanto para a empresa quanto, se necessário, para o cliente. O corpo do e-mail varia dependendo do destinatário.
 
-   4. Movimentação de arquivos: Após o envio bem-sucedido, os arquivos XML e PDF são movidos para o diretório de arquivos enviados. Se o arquivo XML foi enviado para o cliente, ele também é copiado para o diretório de arquivos enviados para clientes.
+   . Movimentação de arquivos: Após o envio bem-sucedido, os arquivos XML e PDF são movidos para o diretório de arquivos enviados. Se o arquivo XML foi enviado para o cliente, ele também é copiado para o diretório de arquivos enviados para clientes.
 
-   5. Aguarda e repete: O programa aguarda por um determinado período de tempo (5 segundos) antes de verificar novamente se existem arquivos XML no diretório.
+   . Aguarda e repete: O programa aguarda por um determinado período de tempo (5 segundos) antes de verificar novamente se existem arquivos XML no diretório.
