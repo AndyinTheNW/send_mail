@@ -23,7 +23,7 @@ senha = 'Suasenha'
 
 # Dados da conta de e-mail de destino
 
-email_para = 'EmailDestino@outlook.com'
+email_para = 'EmailDestinoDaEmpresa@outlook.com'
 
 print(f' Email padrão para recebimento: {email_para}')
 
