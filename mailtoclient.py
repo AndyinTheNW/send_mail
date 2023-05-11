@@ -60,7 +60,6 @@ while True:
 
     # Verifica se existem arquivos XML no diretório 'pyfiles'
     if xml_files:
-
         for arquivo in xml_files:
 
             # Abre o arquivo XML e procura pela tag 'cfop' pelo caminho nfeProc → NFe → infNFe → det → prod → CFOP
@@ -85,23 +84,35 @@ while True:
                         if prod_element is not None:
                             cfop_element = prod_element.find(
                                 'ns:CFOP', namespaces)
+                            ncm_element = prod_element.find(
+                                'ns:NCM', namespaces)
 
                             if cfop_element is not None:
                                 cfop = cfop_element.text
                             else:
                                 cfop = None
+                            if ncm_element is not None:
+                                ncm = ncm_element.text
+                            else:
+                                ncm = None
                         else:
                             cfop = None
+                            ncm = None
                     else:
                         cfop = None
+                        ncm = None
                 else:
                     cfop = None
+                    ncm = None
             else:
                 cfop = None
-            print(f"Encontrado o CFOP {cfop} no arquivo {arquivo}")
+                ncm = None
 
-            # Se o campo 'cfop' = 6102, procurar pela tag 'email' e enviar o e-mail para cliente
-            if cfop == '6102':
+            print(f"Encontrado o CFOP {cfop} no arquivo {arquivo}")
+            print(f"Encontrado o NCM {ncm} no arquivo {arquivo}")
+
+            # Se o campo 'cfop' = 6102 e o campo 'ncm' começar com 8703, procura pelo e-mail do cliente no arquivo XML
+            if cfop == '6102' and ncm.startswith('8703'):
                 if infNFe_element is not None:
                     entrega_element = infNFe_element.find(
                         'ns:entrega', namespaces)
