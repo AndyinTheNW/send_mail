@@ -18,12 +18,12 @@ print(f'configurando o servidor SMTP para {smtp_host}:{smtp_port}')
 
 # Dados da conta de e-mail de origem
 
-email_de = 'DestinoEmpresaXML@outlook.com.br'
-senha = '@Roma!@#23'
+email_de = 'SeuEmail@outlook.com'
+senha = 'Suasenha'
 
 # Dados da conta de e-mail de destino
 
-email_para = 'andersonalmeida1008@outlook.com'
+email_para = 'EmailDestino@outlook.com'
 
 print(f' Email padrão para recebimento: {email_para}')
 
@@ -48,9 +48,10 @@ if not os.path.exists(enviados_cliente_dir):
 
 print(f'criando os diretórios {todos_enviados_dir} e {enviados_cliente_dir}')
 
-# Declara a variavél cfop como None para que possa ser sobrescrita posteriormente pelo valor encontrado no arquivo XML
+# Declara a variavél cfop e ncm como None para que possa ser sobrescrita posteriormente pelo valor encontrado no arquivo XML
 
 cfop = None
+ncm = None
 
 # Percorre a pasta em busca de componentes XML, se houver algum, envia para o e-mail de destino, se não, aguarda 5 segundos e verifica novamente
 
