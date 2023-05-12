@@ -1,8 +1,8 @@
-# Esse trecho de código navega pelas tags do xml para buscar o código CFOP e NCM
+# Esse trecho de código navega pelas tags do XML para buscar o código CFOP e NCM
 
 ![Print do código](namespace_bloco.png)
 
- * Explicação detalhada:
+ ## * Explicação detalhada:
 
  ### Este bloco de código realiza as seguintes ações:
 
