@@ -8,93 +8,124 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
 from email.mime.image import MIMEImage
 from time import sleep
+import logging
 
 
-# Configurações do servidor SMTP para Outlook.com
-smtp_host = 'smtp.office365.com'
-smtp_port = 587
+# Configurações de log
 
-print(f'configurando o servidor SMTP para {smtp_host}:{smtp_port}')
+logging.basicConfig(filename='mailtoclient.log', level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
-# Dados da conta de e-mail de origem
+# Loga um evento de início do programa
 
-email_de = 'SeuEmail@outlook.com'
-senha = 'Suasenha'
+logging.info('Iniciando o programa')
 
-# Dados da conta de e-mail de destino
+try:
 
-email_para = 'EmailDestinoDaEmpresa@outlook.com'
+    # Configurações do servidor SMTP para Outlook.com
+    smtp_host = 'smtp.office365.com'
+    smtp_port = 587
 
-print(f' Email padrão para recebimento: {email_para}')
+    print(f'configurando o servidor SMTP para {smtp_host}:{smtp_port}')
+    logging.info(
+        f'configurando o servidor SMTP para {smtp_host}:{smtp_port}')
 
-# Diretório 'home/pyfiles
-diretorio = os.path.join(os.path.expanduser('~'), 'pyfiles')
+    # Dados da conta de e-mail de origem
 
-imagem_caminho = os.path.join(os.path.expanduser('~'), 'pyfiles', 'car.jpeg')
+    email_de = 'destino@outlook.com'
+    senha = 'senha'
 
-print(f'localizando os componentes no diretório {diretorio}')
+    print(f' Definido E-mail de origem: {email_de}')
+    logging.info(f' Definido E-mail de origem: {email_de}')
 
-# Diretório onde os componentes enviados serão armazenados
-todos_enviados_dir = os.path.join(diretorio, 'enviados')
-enviados_cliente_dir = os.path.join(todos_enviados_dir, 'enviados_cliente')
+    # Dados da conta de e-mail de destino
 
-# verifica se existem os diretórios 'todos_enviados' e 'enviados_cliente' e cria ambas caso não existam, no diretório 'mailfiles'
+    email_para = 'DestinoEmpresaXML@outlook.com'
 
-if not os.path.exists(todos_enviados_dir):
-    os.makedirs(todos_enviados_dir)
+    print(f' Email para recebimento: {email_para}')
+    logging.info(f' Email para recebimento: {email_para}')
 
-if not os.path.exists(enviados_cliente_dir):
-    os.makedirs(enviados_cliente_dir)
+    # Diretorio 'home/pyfiles
+    diretorio = os.path.join(os.path.expanduser('~'), 'pyfiles')
 
-print(f'criando os diretórios {todos_enviados_dir} e {enviados_cliente_dir}')
+    imagem_caminho = os.path.join(
+        os.path.expanduser('~'), 'pyfiles', 'car.jpeg')
 
-# Declara a variavél cfop e ncm como None para que possa ser sobrescrita posteriormente pelo valor encontrado no arquivo XML
+    print(f'localizando os componentes no diretorio {diretorio}')
+    logging.info(f'localizando os componentes no diretorio {diretorio}')
 
-cfop = None
-ncm = None
+    # Diretorio onde os componentes enviados serão armazenados
+    todos_enviados_dir = os.path.join(diretorio, 'enviados')
+    enviados_cliente_dir = os.path.join(
+        todos_enviados_dir, 'enviados_cliente')
 
-# Percorre a pasta em busca de componentes XML, se houver algum, envia para o e-mail de destino, se não, aguarda 5 segundos e verifica novamente
+    # verifica se existem os diretorios 'todos_enviados' e 'enviados_cliente' e cria ambas caso não existam, no diretorio 'mailfiles'
 
-while True:
-    cliente_email = None
-    xml_files = [f for f in os.listdir(diretorio) if f.endswith('.xml')]
+    if not os.path.exists(todos_enviados_dir):
+        os.makedirs(todos_enviados_dir)
 
-    # Verifica se existem arquivos XML no diretório 'pyfiles'
-    if xml_files:
-        for arquivo in xml_files:
+    if not os.path.exists(enviados_cliente_dir):
+        os.makedirs(enviados_cliente_dir)
 
-            # Abre o arquivo XML e procura pela tag 'cfop' pelo caminho nfeProc → NFe → infNFe → det → prod → CFOP
-            caminho_arquivo = os.path.join(diretorio, arquivo)
-            tree = ET.parse(caminho_arquivo)
-            root = tree.getroot()
+    print(
+        f'criando os diretorios {todos_enviados_dir} e {enviados_cliente_dir}')
+    logging.info(
+        f'criando os diretorios {todos_enviados_dir} e {enviados_cliente_dir}')
 
-            # Lidando com o namespace
-            namespaces = {'ns': 'http://www.portalfiscal.inf.br/nfe'}
-            nfe_element = root.find('ns:NFe', namespaces)
+    # Declara a variavel cfop e ncm como None para que possa ser sobrescrita posteriormente pelo valor encontrado no arquivo XML
 
-            # Encontre a tag CFOP
-            if nfe_element is not None:
-                infNFe_element = nfe_element.find('ns:infNFe', namespaces)
+    cfop = None
+    ncm = None
 
-                if infNFe_element is not None:
-                    det_element = infNFe_element.find('ns:det', namespaces)
+    # Percorre a pasta em busca de componentes XML, se houver algum, envia para o e-mail de destino, se não, aguarda 5 segundos e verifica novamente
 
-                    if det_element is not None:
-                        prod_element = det_element.find('ns:prod', namespaces)
+    while True:
+        cliente_email = None
+        xml_files = [f for f in os.listdir(
+            diretorio) if f.endswith('.xml')]
 
-                        if prod_element is not None:
-                            cfop_element = prod_element.find(
-                                'ns:CFOP', namespaces)
-                            ncm_element = prod_element.find(
-                                'ns:NCM', namespaces)
+        # Verifica se existem arquivos XML no diretorio 'pyfiles'
+        if xml_files:
+            for arquivo in xml_files:
 
-                            if cfop_element is not None:
-                                cfop = cfop_element.text
+                # Abre o arquivo XML e procura pela tag 'cfop' pelo caminho nfeProc → NFe → infNFe → det → prod → CFOP
+                caminho_arquivo = os.path.join(diretorio, arquivo)
+                tree = ET.parse(caminho_arquivo)
+                root = tree.getroot()
+
+                # Lidando com o namespace
+                namespaces = {'ns': 'http://www.portalfiscal.inf.br/nfe'}
+                nfe_element = root.find('ns:NFe', namespaces)
+
+                # Encontre a tag CFOP
+                if nfe_element is not None:
+                    infNFe_element = nfe_element.find(
+                        'ns:infNFe', namespaces)
+
+                    if infNFe_element is not None:
+                        det_element = infNFe_element.find(
+                            'ns:det', namespaces)
+
+                        if det_element is not None:
+                            prod_element = det_element.find(
+                                'ns:prod', namespaces)
+
+                            if prod_element is not None:
+                                cfop_element = prod_element.find(
+                                    'ns:CFOP', namespaces)
+                                ncm_element = prod_element.find(
+                                    'ns:NCM', namespaces)
+
+                                if cfop_element is not None:
+                                    cfop = cfop_element.text
+                                else:
+                                    cfop = None
+                                if ncm_element is not None:
+                                    ncm = ncm_element.text
+                                else:
+                                    ncm = None
                             else:
                                 cfop = None
-                            if ncm_element is not None:
-                                ncm = ncm_element.text
-                            else:
                                 ncm = None
                         else:
                             cfop = None
@@ -105,139 +136,183 @@ while True:
                 else:
                     cfop = None
                     ncm = None
-            else:
-                cfop = None
-                ncm = None
 
-            print(f"Encontrado o CFOP {cfop} no arquivo {arquivo}")
-            print(f"Encontrado o NCM {ncm} no arquivo {arquivo}")
+                print(f"Encontrado o CFOP {cfop} no arquivo {arquivo}")
+                print(f"Encontrado o NCM {ncm} no arquivo {arquivo}")
 
-            # Se o campo 'cfop' = 6102 e o campo 'ncm' começar com 8703, procura pelo e-mail do cliente no arquivo XML
-            if cfop == '6102' and ncm.startswith('8703'):
-                if infNFe_element is not None:
-                    entrega_element = infNFe_element.find(
-                        'ns:entrega', namespaces)
+                # Se o campo 'cfop' = 6102 e o campo 'ncm' começar com 8703, procura pelo e-mail do cliente no arquivo XML
+                if cfop == '6102' and ncm.startswith('8703'):
+                    if infNFe_element is not None:
+                        entrega_element = infNFe_element.find(
+                            'ns:entrega', namespaces)
 
-                    if entrega_element is not None:
-                        email_element = entrega_element.find(
-                            'ns:email', namespaces)
+                        if entrega_element is not None:
+                            email_element = entrega_element.find(
+                                'ns:email', namespaces)
 
-                        if email_element is not None:
-                            cliente_email = email_element.text
+                            if email_element is not None:
+                                cliente_email = email_element.text
+                            else:
+                                cliente_email = None
                         else:
                             cliente_email = None
                     else:
                         cliente_email = None
+                    print(
+                        f"Encontrado o e-mail {cliente_email} no arquivo {arquivo}")
+                    logging.info(
+                        f'Encontrado o e-mail {cliente_email} no arquivo {arquivo}')
+
+                # Nome do arquivo PDF que deve ser enviado junto com o XML
+                arquivo_sem_sufixo = arquivo.replace('-nfe', '')
+                nome_pdf = arquivo_sem_sufixo.replace('.xml', '.pdf')
+                caminho_pdf = os.path.join(diretorio, nome_pdf)
+
+                print(f'localizando o arquivo PDF {caminho_pdf}')
+
+                # Se o arquivo PDF correspondente não existir, pular para o proximo arquivo XML
+                if not os.path.exists(caminho_pdf):
+                    print(
+                        f'O arquivo PDF correspondente {nome_pdf} nao foi encontrado, pulando o arquivo XML {arquivo}')
+                    logging.info(
+                        f'O arquivo PDF correspondente {nome_pdf} nao foi encontrado, pulando o arquivo XML {arquivo}')
+                    continue
+
+            # Enviar e-mail para a empresa e, se necessário, para o cliente
+            destinatarios = [email_para]
+
+            if cliente_email is not None:
+                destinatarios.append(cliente_email)
+
+            server = smtplib.SMTP(smtp_host, smtp_port)
+            server.starttls()
+            server.login(email_de, senha)  # Faz login no servidor
+
+            for email_destino in destinatarios:
+                mensagem = f"Enviando o arquivo {arquivo} para {email_destino}"
+                if email_destino == cliente_email:
+                    mensagem += " (cliente)"
+                print(mensagem)
+
+                # Cria a mensagem de e-mail
+                msg = MIMEMultipart()
+                msg['From'] = email_de
+                msg['To'] = email_destino
+                msg['Subject'] = 'Arquivos XML e PDF enviados por e-mail'
+
+                # Adicione o corpo do e-mail
+                if email_destino == cliente_email:
+                    with open(imagem_caminho, 'rb') as img_file:
+                        img_data = img_file.read()
+                        image = MIMEImage(img_data)
+                        image.add_header('Content-ID', '<cars_image>')
+                        msg.attach(image)
+
+                    corpo_email = f"""
+                <html>
+                <body>
+                    <p>Olá, cliente! espero que esse e-mail o encontre bem</p>
+                    <p>Segue em anexo os arquivos referentes á compra do seu mais novo carro! Parabéns!</p>
+                    <p><img src="cid:cars_image" alt="cars image"></p>
+                    <p>Atenciosamente,</p>
+                    <p>Anderson</p>
+                </body>
+                </html>
+                """
+                    msg.attach(MIMEText(corpo_email, 'html'))
                 else:
-                    cliente_email = None
+                    corpo_email = f'Olá Empresa,\n\nSegue em anexo o arquivo XML e o arquivo PDF.\n\nAtenciosamente,\nAnderson'
+                    msg.attach(MIMEText(corpo_email, 'plain'))
+
+                with open(caminho_arquivo, 'rb') as xml_file:
+                    anexo = MIMEApplication(
+                        xml_file.read(), _subtype='xml')
+                    anexo.add_header('Content-Disposition',
+                                     'attachment', filename=arquivo)
+                    msg.attach(anexo)
+
+                if os.path.exists(caminho_pdf):
+                    with open(caminho_pdf, 'rb') as pdf_file:
+                        anexo = MIMEApplication(
+                            pdf_file.read(), _subtype='pdf')
+                        anexo.add_header('Content-Disposition',
+                                         'attachment', filename=nome_pdf)
+                        msg.attach(anexo)
+                else:
+                    print(f'Arquivo {nome_pdf}Not found')
+
+                # Envie o e-mail
+                server.sendmail(email_de, email_destino, msg.as_string())
                 print(
-                    f"Encontrado o e-mail {cliente_email} no arquivo {arquivo}")
+                    f'Arquivo {arquivo} enviado com sucesso para {email_destino}')
+                logging.info(
+                    f'Arquivo {arquivo} enviado com sucesso para {email_destino}')
 
-            # Nome do arquivo PDF que deve ser enviado junto com o XML
-            arquivo_sem_sufixo = arquivo.replace('-nfe', '')
-            nome_pdf = arquivo_sem_sufixo.replace('.xml', '.pdf')
-            caminho_pdf = os.path.join(diretorio, nome_pdf)
+            server.quit()
 
-            print(f'localizando o arquivo PDF {caminho_pdf}')
+            print(
+                f'Arquivo {arquivo} enviado com sucesso para {email_destino}')
+            logging.info(
+                f'Arquivo {arquivo} enviado com sucesso para {email_destino}')
 
-            # Se o arquivo PDF correspondente não existir, pular para o próximo arquivo XML
-            if not os.path.exists(caminho_pdf):
+            # Move o arquivo enviado para a pasta 'todos_enviados'
+
+            shutil.move(caminho_arquivo, todos_enviados_dir)
+            if os.path.exists(caminho_pdf):
+                shutil.move(caminho_pdf, todos_enviados_dir)
                 print(
-                    f'O arquivo PDF correspondente {nome_pdf} não foi encontrado, pulando o arquivo XML {arquivo}')
-                continue
+                    f'Arquivo {arquivo} movido para {todos_enviados_dir}')
 
-        # Enviar e-mail para a empresa e, se necessário, para o cliente
-        destinatarios = [email_para]
+                # Se o arquivo XML foi enviado para o cliente, copiar xml e pdf e enviar para a pasta 'enviados_cliente'
 
-        if cliente_email is not None:
-            destinatarios.append(cliente_email)
+        if cfop == '6102':
+            shutil.copy(os.path.join(todos_enviados_dir,
+                        arquivo), enviados_cliente_dir)
+            if os.path.exists(caminho_pdf):
+                shutil.copy(os.path.join(todos_enviados_dir,
+                            nome_pdf), enviados_cliente_dir)
+
+            print(f'Arquivo {arquivo} copiado para {enviados_cliente_dir}')
+
+            for arquivo in (f for f in os.listdir(todos_enviados_dir) if f.endswith('.pdf')):
+                shutil.copy(os.path.join(todos_enviados_dir,
+                            arquivo), enviados_cliente_dir)
+                print(
+                    f'Arquivo {arquivo} copiado para {enviados_cliente_dir}')
+        logging.info('Ciclo reiniciado')
+        sleep(5)
+
+except Exception as e:
+    # Loga um evento de erro
+    logging.error('Ocorreu um erro: %s', e)
+
+    smtp_host = 'smtp-mail.outlook.com'
+    smtp_port = 587
+
+    # Dados da conta de e-mail dos administradores do sistema
+    email_admins = ['anderson.pereira@bravocorp.com.br',
+                    # 'bruno.tonini@bravocorp.com.br',
+                    # 'jheniffer.duarte@bravocorp.com.br',
+                    # 'gabriel.martins@bravocorp.com.br'
+                    ]
+
+    for email_admin in email_admins:
+        msg = MIMEMultipart()
+        msg['From'] = email_de
+        msg['To'] = email_admin
+        msg['Subject'] = 'Erro na Aplicação PyFiles'
+
+        body = 'Alerta: ocorreu um erro na aplicação Pyfiles - GWM. Corrigir assim que possível. Erro:\n{} \n\n\n'.format(
+            e)
+        msg.attach(MIMEText(body, 'plain'))
 
         server = smtplib.SMTP(smtp_host, smtp_port)
         server.starttls()
-        server.login(email_de, senha)  # Faz login no servidor
-
-        for email_destino in destinatarios:
-            mensagem = f"Enviando o arquivo {arquivo} para {email_destino}"
-            if email_destino == cliente_email:
-                mensagem += " (cliente)"
-            print(mensagem)
-
-            # Cria a mensagem de e-mail
-            msg = MIMEMultipart()
-            msg['From'] = email_de
-            msg['To'] = email_destino
-            msg['Subject'] = 'Arquivos XML e PDF enviados por e-mail'
-
-            # Adicione o corpo do e-mail
-            if email_destino == cliente_email:
-                with open(imagem_caminho, 'rb') as img_file:
-                    img_data = img_file.read()
-                    image = MIMEImage(img_data)
-                    image.add_header('Content-ID', '<cars_image>')
-                    msg.attach(image)
-
-                corpo_email = f"""
-        <html>
-        <body>
-            <p>Olá, cliente! espero que esse e-mail o encontre bem</p>
-            <p>Segue em anexo os arquivos referentes á compra do seu mais novo carro! Parabéns!</p>
-            <p><img src="cid:cars_image" alt="cars image"></p>
-            <p>Atenciosamente,</p>
-            <p>Anderson</p>
-        </body>
-        </html>
-        """
-                msg.attach(MIMEText(corpo_email, 'html'))
-            else:
-                corpo_email = f'Olá Empresa,\n\nSegue em anexo o arquivo XML e o arquivo PDF.\n\nAtenciosamente,\nAnderson'
-                msg.attach(MIMEText(corpo_email, 'plain'))
-
-            with open(caminho_arquivo, 'rb') as xml_file:
-                anexo = MIMEApplication(xml_file.read(), _subtype='xml')
-                anexo.add_header('Content-Disposition',
-                                 'attachment', filename=arquivo)
-                msg.attach(anexo)
-
-            if os.path.exists(caminho_pdf):
-                with open(caminho_pdf, 'rb') as pdf_file:
-                    anexo = MIMEApplication(pdf_file.read(), _subtype='pdf')
-                    anexo.add_header('Content-Disposition',
-                                     'attachment', filename=nome_pdf)
-                    msg.attach(anexo)
-            else:
-                print(f'Arquivo {nome_pdf} não encontrado')
-
-            # Envie o e-mail
-            server.sendmail(email_de, email_destino, msg.as_string())
-            print(
-                f'Arquivo {arquivo} enviado com sucesso para {email_destino}')
-
+        server.login(email_de, senha)
+        text = msg.as_string()
+        server.sendmail(email_de, email_admin, text)
         server.quit()
 
-        print(f'Arquivo {arquivo} enviado com sucesso para {email_destino}')
-
-        # Move o arquivo enviado para a pasta 'todos_enviados'
-
-        shutil.move(caminho_arquivo, todos_enviados_dir)
-        if os.path.exists(caminho_pdf):
-            shutil.move(caminho_pdf, todos_enviados_dir)
-            print(f'Arquivo {arquivo} movido para {todos_enviados_dir}')
-
-            # Se o arquivo XML foi enviado para o cliente, copiar xml e pdf e enviar para a pasta 'enviados_cliente'
-
-    if cfop == '6102':
-        shutil.copy(os.path.join(todos_enviados_dir,
-                    arquivo), enviados_cliente_dir)
-        if os.path.exists(caminho_pdf):
-            shutil.copy(os.path.join(todos_enviados_dir,
-                        nome_pdf), enviados_cliente_dir)
-
-        print(f'Arquivo {arquivo} copiado para {enviados_cliente_dir}')
-
-        for arquivo in (f for f in os.listdir(todos_enviados_dir) if f.endswith('.pdf')):
-            shutil.copy(os.path.join(todos_enviados_dir,
-                        arquivo), enviados_cliente_dir)
-            print(f'Arquivo {arquivo} copiado para {enviados_cliente_dir}')
-
-    sleep(5)
-    # fim do for
+finally:
+    # loga um evento de fim de execução
+    logging.info('Fim do programa')
