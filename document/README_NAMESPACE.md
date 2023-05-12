@@ -1,8 +1,8 @@
-# Esse trecho de código navega pelas tags do xml para buscar o código CFOP.
+# Esse trecho de código navega pelas tags do XML para buscar o código CFOP e NCM
 
 ![Print do código](namespace_bloco.png)
 
- * Explicação detalhada:
+ ## * Explicação detalhada:
 
  ### Este bloco de código realiza as seguintes ações:
 
@@ -24,7 +24,6 @@
 
 9. **Procura o elemento 'email' se 'entrega' for encontrado**: Se 'entrega' for encontrado, o código procura pelo elemento 'email' dentro de 'entrega'. Se 'email' for encontrado, ele captura o texto dentro desse elemento.
 
-Portanto, este código está navegando pela estrutura do arquivo XML para extrair informações específicas que são necessárias para o processo. Ele procura especificamente pelo código CFOP e, se for '6102', procura o e-mail do cliente no arquivo XML.
 
 
 
