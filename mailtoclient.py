@@ -46,16 +46,16 @@ try:
     logging.info(f' Email para recebimento: {email_para}')
 
     # Diretorio 'home/pyfiles
-    diretorio = os.path.join(os.path.expanduser('~'), 'pyfiles')
+    diretorio_inicial = os.path.join(os.path.expanduser('~'), 'pyfiles')
 
     imagem_caminho = os.path.join(
         os.path.expanduser('~'), 'pyfiles', 'car.jpeg')
 
-    print(f'localizando os componentes no diretorio {diretorio}')
-    logging.info(f'localizando os componentes no diretorio {diretorio}')
+    print(f'localizando os componentes no diretorio {diretorio_inicial}')
+    logging.info(f'localizando os componentes no diretorio {diretorio_inicial}')
 
     # Diretorio onde os componentes enviados serão armazenados
-    todos_enviados_dir = os.path.join(diretorio, 'enviados')
+    todos_enviados_dir = os.path.join(diretorio_inicial, 'enviados')
     enviados_cliente_dir = os.path.join(
         todos_enviados_dir, 'enviados_cliente')
 
@@ -82,14 +82,16 @@ try:
     while True:
         cliente_email = None
         xml_files = [f for f in os.listdir(
-            diretorio) if f.endswith('.xml')]
+            diretorio_inicial) if f.endswith('.xml')]
 
         # Verifica se existem arquivos XML no diretorio 'pyfiles'
+        
         if xml_files:
             for arquivo in xml_files:
-
+                
                 # Abre o arquivo XML e procura pela tag 'cfop' pelo caminho nfeProc → NFe → infNFe → det → prod → CFOP
-                caminho_arquivo = os.path.join(diretorio, arquivo)
+                
+                caminho_arquivo = os.path.join(diretorio_inicial, arquivo)
                 tree = ET.parse(caminho_arquivo)
                 root = tree.getroot()
 
@@ -166,7 +168,7 @@ try:
                 # Nome do arquivo PDF que deve ser enviado junto com o XML
                 arquivo_sem_sufixo = arquivo.replace('-nfe', '')
                 nome_pdf = arquivo_sem_sufixo.replace('.xml', '.pdf')
-                caminho_pdf = os.path.join(diretorio, nome_pdf)
+                caminho_pdf = os.path.join(diretorio_inicial, nome_pdf)
 
                 print(f'localizando o arquivo PDF {caminho_pdf}')
 
