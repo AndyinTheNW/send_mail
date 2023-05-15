@@ -1,6 +1,6 @@
 # Documentação de código do arquivo mailtoclient.py
    ### Este arquivo contém toda a documentação detalhada do programa "PyFiles" que é responsável por enviar arquivos XML e PDF para o cliente comprador e para a empresa contratante do serviço.
-   ### Em caso de qualquer dúvida com relação ao código ou a documentação em sí, entre em contato com o desenvolvedor do programa pelo e-mail `anderson.pereira@bravocorp.com.br` ou pelo telefone `(11)994527-0673`
+   ### Em caso de qualquer dúvida com relação ao código ou a documentação em sí, entre em contato com o desenvolvedor do programa pelo e-mail `anderson.pereira@bravocorp.com.br` ou pelo telefone `(11)94527-0673`
     
    `Todos os direitos desse script são reservados: Bravo Corp. 2023.`
    
