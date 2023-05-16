@@ -1,9 +1,10 @@
 # Documentação de código do arquivo mailtoclient.py
 
-Este arquivo contém toda a documentação detalhada do programa "PyFiles" que é responsável por enviar arquivos XML e PDF para o cliente comprador e para a empresa contratante do serviço.
-Em caso de qualquer dúvida com relação ao código ou a documentação em sí, entre em contato com o desenvolvedor do programa pelo e-mail `Anderson.Pereira@BravoCorp.com.br` ou pelo telefone `(11) 9 94527-0673`.
+    Este arquivo contém toda a documentação detalhada do programa "PyFiles" que é responsável por enviar arquivos XML e PDF para o cliente comprador e para a empresa contratante do serviço.
 
-Todos os direitos desse script são reservados a Bravo Corp. 2023.
+    Em caso de qualquer dúvida com relação ao código ou a documentação em sí, entre em contato com o desenvolvedor do programa pelo e-mail `Anderson.Pereira@BravoCorp.com.br` ou pelo telefone `(11) 9 94527-0673'.
+
+    Todos os direitos desse script são reservados a Bravo Corp. 2023.
 
 ## Importação de bibliotecas
 
@@ -35,21 +36,20 @@ Todos os direitos desse script são reservados a Bravo Corp. 2023.
 
  O Progama cria um arquivo de log chamado `mailtoclient.log` no diretório `logs` para registrar as ações do programa.
 
-### Configura o servidor SMTP e dos e-mails de origem e destino:
+## Configura o servidor SMTP e dos e-mails de origem e destino:
   
 O Programa primeiro se conecta ao servidor SMTP do Outlook.com `smtp host: smtp-mail.outlook.com` na porta `587` e depois se autentica com o e-mail de origem e senha. Após isso, o programa define os endereços de e-mail de origem e destino, que são predefinidos pelo cliente.
 
 ### Configura os diretórios que serão utilizados
 
- O programa define o diretório inicial, que é para onde serão inicialmente enviados os arquivos XML e PDF pelo cliente, e os diretórios finais, que é para onde serão enviados os arquivos XML e PDF pelo programa, sendo eles:
-  Na variável `diretorio_incial`, `todos_enviados` e `enviados_cliente`:
- - `diretorio_inicial`: Diretório onde o contratante envia os arquivos XML e PDF
- - `todos_enviados`: Diretório onde o programa envia os arquivos XML e PDF que foram enviados para contratante
- - `enviados_cliente`: Diretório onde o programa envia apenas arquivos XML e PDF que foram enviados para o cliente comprador e para o contratante.
+    O programa define o diretório inicial, que é para onde serão inicialmente enviados os arquivos XML e PDF pelo cliente, e os diretórios finais, que é para onde serão enviados os arquivos XML e PDF pelo programa, sendo eles:
+        Na variável `diretorio_incial`, `todos_enviados` e `enviados_cliente`:
+            - `diretorio_inicial`: Diretório onde o contratante envia os arquivos XML e PDF
+            - `todos_enviados`: Diretório onde o programa envia os arquivos XML e PDF que foram enviados para contratante
+            - `enviados_cliente`: Diretório onde o programa envia apenas arquivos XML e PDF que foram enviados para o cliente comprador e para o contratante.
 
 ### Variáveis nulas.
-
-    O programa define as variáveis `cfop` e `ncm` como nulas, para que elas possam posteriormente serem sobrescritas a partir da verificação do arquivo XML. Elas precisam ser declaradas como nulas para que o programa não retorne um erro caso o arquivo XML não possua essas informações.
+   O programa define as variáveis `cfop` e `ncm` como nulas, para que elas possam posteriormente serem sobrescritas a partir da verificação do arquivo XML. Elas precisam ser declaradas como nulas para que o programa não retorne um erro caso o arquivo XML não possua essas informações.
 
 # Corpo Principal do programa
 
