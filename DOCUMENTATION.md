@@ -1,8 +1,9 @@
 # Documentação de código do arquivo mailtoclient.py
 
-    Este arquivo contém toda a documentação detalhada do programa "PyFiles" que é responsável por enviar arquivos XML e PDF para o cliente comprador e para a empresa contratante do serviço.
-    Em caso de qualquer dúvida com relação ao código ou a documentação em sí, entre em contato com o desenvolvedor do programa pelo e-mail `Anderson.Pereira@BravoCorp.com.br` ou pelo telefone `(11) 9 94527-0673'.
-    Todos os direitos desse script são reservados a Bravo Corp. 2023.
+Este arquivo contém toda a documentação detalhada do programa "PyFiles" que é responsável por enviar arquivos XML e PDF para o cliente comprador e para a empresa contratante do serviço.
+Em caso de qualquer dúvida com relação ao código ou a documentação em sí, entre em contato com o desenvolvedor do programa pelo e-mail `Anderson.Pereira@BravoCorp.com.br` ou pelo telefone `(11) 9 94527-0673`.
+
+Todos os direitos desse script são reservados a Bravo Corp. 2023.
 
 ## Importação de bibliotecas
 
@@ -36,15 +37,15 @@
 
 ### Configura o servidor SMTP e dos e-mails de origem e destino:
   
-  O Programa primeiro se conecta ao servidor SMTP do Outlook.com `smtp host: smtp-mail.outlook.com` na porta `587` e depois se autentica com o e-mail de origem e senha. Após isso, o programa define os endereços de e-mail de origem e destino, que são predefinidos pelo cliente.
+O Programa primeiro se conecta ao servidor SMTP do Outlook.com `smtp host: smtp-mail.outlook.com` na porta `587` e depois se autentica com o e-mail de origem e senha. Após isso, o programa define os endereços de e-mail de origem e destino, que são predefinidos pelo cliente.
 
 ### Configura os diretórios que serão utilizados
 
-    O programa define o diretório inicial, que é para onde serão inicialmente enviados os arquivos XML e PDF pelo cliente, e os diretórios finais, que é para onde serão enviados os arquivos XML e PDF pelo programa, sendo eles:
-        Na variável `diretorio_incial`, `todos_enviados` e `enviados_cliente`:
-            - `diretorio_inicial`: Diretório onde o contratante envia os arquivos XML e PDF
-            - `todos_enviados`: Diretório onde o programa envia os arquivos XML e PDF que foram enviados para contratante
-            - `enviados_cliente`: Diretório onde o programa envia apenas arquivos XML e PDF que foram enviados para o cliente comprador e para o contratante.
+ O programa define o diretório inicial, que é para onde serão inicialmente enviados os arquivos XML e PDF pelo cliente, e os diretórios finais, que é para onde serão enviados os arquivos XML e PDF pelo programa, sendo eles:
+  Na variável `diretorio_incial`, `todos_enviados` e `enviados_cliente`:
+ - `diretorio_inicial`: Diretório onde o contratante envia os arquivos XML e PDF
+ - `todos_enviados`: Diretório onde o programa envia os arquivos XML e PDF que foram enviados para contratante
+ - `enviados_cliente`: Diretório onde o programa envia apenas arquivos XML e PDF que foram enviados para o cliente comprador e para o contratante.
 
 ### Variáveis nulas.
 
@@ -73,8 +74,29 @@
 ## Encontrando CFOP e NCM. 
 
 * O programa começa uma sequência de diversas verificações através da condicional `if` para encontrar o CFOP e o NCM do arquivo XML que está sendo verificado, pelo caminho nfeProc → NFe → infNFe → det → prod → CFOP e nfeProc → NFe → infNFe → det → prod → NCM.
+ O programa verifica se as tags do XML que serão verificadas existem, caso existam, ele navega até o CFOP, NCM e o email, e os adiciona cada um a uma variável, caso não exista alguma tag do caminho, ele define as variáveis `cfop` e `ncm` como nulas
 
-    1. O programa verifica se os elementos do XML que serão verificados existem, caso existam, ele os adiciona a uma variável, caso não existam, ele define as variáveis `cfop` e `ncm` como nulas.
+ ### Renomeando o arquivo XML
+
+ * O programa declara três variáveis que serão utilizadas para renomear o arquivo XML, que são:
+    1. `arquivo_sem_sufixo` que recebe `arquivo.replace('nfe', '')`, que é o nome do arquivo XML sem o sufixo `nfe` 
+    2.  `nome_pdf` que recebe `arquivo_sem_sufixo + '.xml', '.pdf'`, que é o nome do arquivo PDF que será renomeado
+    3. `caminho_pdf` que recebe `os.path.join(diretorio_inicial, nome_pdf)`, que é o caminho completo do arquivo PDF que será renomeado (diretório inicial + nome do arquivo PDF).
+
+### Verificando se o arquivo PDF existe
+
+* O programa verifica se o arquivo PDF existe, caso exista, ele renomeia o arquivo PDF para o nome do arquivo XML, caso não exista, ele define a variável `nome_pdf` como nula e pula para o próximo arquivo XML, reiniciando a verificação.
+
+### Enviando o e-mail para a empresa, e, se necessário, para o cliente.
+
+* O programa verifica se a variável `cliente_email` não é nula, caso ela NÂO SEJA, ele entra em um `for` que segue o seguinte processo:
+    1. Cria a mensagem de email com o método `MIMEMultipart()`
+    2. Verifica se email_destino == `cliente_email`, se sim, ele adiciona o email do cliente, anexa a imagem de venda elaborada pelo marketing junto de assunto e corpo do e-mail próprios e devidamente personalizados. 
+    3. Se email_destino não for igual a `cliente_email`, ele envia apenas para a empresa contratante, com seu assunto e corpo de e-mail diferentes, e sem imagem anexada.
+
+
+
+
 
     
 
