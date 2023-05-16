@@ -1,10 +1,9 @@
 # Documentação de código do arquivo mailtoclient.py
 
-    Este arquivo contém toda a documentação detalhada do programa "PyFiles" que é responsável por enviar arquivos XML e PDF para o cliente comprador e para a empresa contratante do serviço.
+   Este arquivo contém toda a documentação detalhada do programa "PyFiles" que é responsável por enviar arquivos XML e PDF para o cliente comprador e para a empresa contratante do serviço.
 
-    Em caso de qualquer dúvida com relação ao código ou a documentação em sí, entre em contato com o desenvolvedor do programa pelo e-mail `Anderson.Pereira@BravoCorp.com.br` ou pelo telefone `(11) 9 94527-0673'.
-
-    Todos os direitos desse script são reservados a Bravo Corp. 2023.
+   Em caso de qualquer dúvida com relação ao código ou a documentação em sí, entre em contato com o desenvolvedor do programa pelo e-mail `anderson.pereira@bravocorp.com.br` ou pelo telefone `(11) 94527-0673` 
+   Todos os direitos desse script são reservados a Bravo Corp. 2023.
 
 ## Importação de bibliotecas
 
@@ -42,7 +41,7 @@ O Programa primeiro se conecta ao servidor SMTP do Outlook.com `smtp host: smtp-
 
 ### Configura os diretórios que serão utilizados
 
-    O programa define o diretório inicial, que é para onde serão inicialmente enviados os arquivos XML e PDF pelo cliente, e os diretórios finais, que é para onde serão enviados os arquivos XML e PDF pelo programa, sendo eles:
+   O programa define o diretório inicial, que é para onde serão inicialmente enviados os arquivos XML e PDF pelo cliente, e os diretórios finais, que é para onde serão enviados os arquivos XML e PDF pelo programa, sendo eles:
         Na variável `diretorio_incial`, `todos_enviados` e `enviados_cliente`:
             - `diretorio_inicial`: Diretório onde o contratante envia os arquivos XML e PDF
             - `todos_enviados`: Diretório onde o programa envia os arquivos XML e PDF que foram enviados para contratante
@@ -53,7 +52,7 @@ O Programa primeiro se conecta ao servidor SMTP do Outlook.com `smtp host: smtp-
 
 # Corpo Principal do programa
 
-* Laço e a variável `cliente_email` 
+* Laço e a variável `cliente_email`: 
  O programa entra em um laço infinito e define a variável `cliente_email` como nula. O laço infinito é necessário para que o programa fique sempre em execução, e a variável `cliente_email` precisa ser definida dentro do laço pois ela precisa ser sobrescrita a cada ciclo de varredura do diretório inicial.
 
  * Verificação de arquivos XML no diretório inicial: 
@@ -89,7 +88,7 @@ O Programa primeiro se conecta ao servidor SMTP do Outlook.com `smtp host: smtp-
 
 ### Enviando o e-mail para a empresa, e, se necessário, para o cliente.
 
-* O programa verifica se a variável `cliente_email` não é nula, caso ela NÂO SEJA, ele entra em um `for` que segue o seguinte processo:
+* O programa verifica se a variável `cliente_email` não é nula, caso ela NÃO SEJA, ele entra em um `for` que segue o seguinte processo:
     1. Cria a mensagem de email com o método `MIMEMultipart()`
     2. Verifica se email_destino == `cliente_email`, se sim, ele adiciona o email do cliente, anexa a imagem de venda elaborada pelo marketing junto de assunto e corpo do e-mail próprios e devidamente personalizados. 
     3. Se email_destino não for igual a `cliente_email`, ele envia apenas para a empresa contratante, com seu assunto e corpo de e-mail diferentes, e sem imagem anexada.
