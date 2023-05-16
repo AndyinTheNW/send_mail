@@ -1,9 +1,7 @@
 # Documentação de código do arquivo mailtoclient.py
 
     Este arquivo contém toda a documentação detalhada do programa "PyFiles" que é responsável por enviar arquivos XML e PDF para o cliente comprador e para a empresa contratante do serviço.
-
     Em caso de qualquer dúvida com relação ao código ou a documentação em sí, entre em contato com o desenvolvedor do programa pelo e-mail `Anderson.Pereira@BravoCorp.com.br` ou pelo telefone `(11) 9 94527-0673'.
-
     Todos os direitos desse script são reservados a Bravo Corp. 2023.
 
 ## Importação de bibliotecas
@@ -77,7 +75,7 @@
 * O programa começa uma sequência de diversas verificações através da condicional `if` para encontrar o CFOP e o NCM do arquivo XML que está sendo verificado, pelo caminho nfeProc → NFe → infNFe → det → prod → CFOP e nfeProc → NFe → infNFe → det → prod → NCM.
 
     1. O programa verifica se os elementos do XML que serão verificados existem, caso existam, ele os adiciona a uma variável, caso não existam, ele define as variáveis `cfop` e `ncm` como nulas.
-    
+
     
 
 
