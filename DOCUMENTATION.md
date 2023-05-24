@@ -113,8 +113,6 @@ O arquivo mailtoclient.py é responsável por monitorar um diretório de arquivo
 
 Todas as etapas e funções do programa são logadas em um arquivo chamado mailtoclient.log para permitir a rastreabilidade de eventos e ações. Além disso, em caso de falhas ou erros, o programa envia um e-mail de erro para o administrador, garantindo assim a resolução rápida de qualquer problema que possa surgir.
 
-Lembrando, o programa depende de várias bibliotecas, como os, smtplib, shutil, xml.etree.ElementTree, email.mime.text, email.mime.multipart, email.mime.application, email.mime.image, time e logging para funcionar adequadamente.
-
 Este arquivo de programa é fundamental para o processo de envio de arquivos XML e PDF para o cliente comprador e a empresa contratante do serviço, garantindo que ambos recebam as informações necessárias em tempo hábil.
 
 Por fim, qualquer dúvida ou problema encontrado em relação ao código ou a esta documentação, o contato do desenvolvedor está disponível para suporte.
