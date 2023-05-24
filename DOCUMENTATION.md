@@ -93,17 +93,28 @@ O Programa primeiro se conecta ao servidor SMTP do Outlook.com `smtp host: smtp-
     2. Verifica se email_destino == `cliente_email`, se sim, ele adiciona o email do cliente, anexa a imagem de venda elaborada pelo marketing junto de assunto e corpo do e-mail próprios e devidamente personalizados. 
     3. Se email_destino não for igual a `cliente_email`, ele envia apenas para a empresa contratante, com seu assunto e corpo de e-mail diferentes, e sem imagem anexada.
 
+### Movendo os arquivos XML e PDF para os diretórios finais
 
+* O programa move os arquivos XML e PDF para os diretórios finais, sendo eles:
+    1. `todos_enviados`: Diretório onde o programa envia os arquivos XML e PDF que foram enviados para contratante
+    2. `enviados_cliente`: Diretório onde o programa envia apenas arquivos XML e PDF que foram enviados para o cliente comprador e para o contratante.
 
+### Finalizando o programa
 
+* O programa finaliza o ciclo de verificação do arquivo XML, e reinicia o ciclo de verificação do diretório inicial após um tempo de espera de 5 segundos.
 
-    
+### Funcionamento do Log e e-mail de erro do programa 
 
+    * O programa cria um arquivo de log chamado `mailtoclient.log` que registra e armazena dados relativos ao programa, como o e-mail dos clientes encontrados, o nome do arquivo XML e PDF que foram enviados, e o horário em que o programa foi executado. Além disso, o programa envia um e-mail para o administrador do programa caso ocorra algum erro durante a execução do programa, com o horário em que o erro ocorreu e o tipo de erro. 
 
+# Conclusão
 
+O arquivo mailtoclient.py é responsável por monitorar um diretório de arquivos, ler e interpretar arquivos XML, renomear arquivos PDF correspondentes, e enviar esses arquivos via e-mail para um destinatário especificado no arquivo XML. O processo é contínuo e executa até que seja interrompido.
 
+Todas as etapas e funções do programa são logadas em um arquivo chamado mailtoclient.log para permitir a rastreabilidade de eventos e ações. Além disso, em caso de falhas ou erros, o programa envia um e-mail de erro para o administrador, garantindo assim a resolução rápida de qualquer problema que possa surgir.
 
+Lembrando, o programa depende de várias bibliotecas, como os, smtplib, shutil, xml.etree.ElementTree, email.mime.text, email.mime.multipart, email.mime.application, email.mime.image, time e logging para funcionar adequadamente.
 
-    
-    
+Este arquivo de programa é fundamental para o processo de envio de arquivos XML e PDF para o cliente comprador e a empresa contratante do serviço, garantindo que ambos recebam as informações necessárias em tempo hábil.
 
+Por fim, qualquer dúvida ou problema encontrado em relação ao código ou a esta documentação, o contato do desenvolvedor está disponível para suporte.
