@@ -1,6 +1,6 @@
 # Documentação de código do arquivo mailtoclient.py
 
-   Este arquivo contém toda a documentação detalhada do programa "PyFiles" que é responsável por enviar arquivos XML e PDF para o cliente comprador e para a empresa contratante do serviço.
+   Este arquivo contém toda a documentação detalhada do programa `PyFiles` que é responsável por enviar arquivos XML e PDF para o cliente comprador e para a empresa contratante do serviço.
 
    Em caso de qualquer dúvida com relação ao código ou a documentação em sí, entre em contato com o desenvolvedor do programa pelo e-mail `anderson.pereira@bravocorp.com.br` ou pelo telefone `(11) 94527-0673` 
    Todos os direitos desse script são reservados a Bravo Corp. 2023.
@@ -105,7 +105,7 @@ O Programa primeiro se conecta ao servidor SMTP do Outlook.com `smtp host: smtp-
 
 ### Funcionamento do Log e e-mail de erro do programa 
 
-    * O programa cria um arquivo de log chamado `mailtoclient.log` que registra e armazena dados relativos ao programa, como o e-mail dos clientes encontrados, o nome do arquivo XML e PDF que foram enviados, e o horário em que o programa foi executado. Além disso, o programa envia um e-mail para o administrador do programa caso ocorra algum erro durante a execução do programa, com o horário em que o erro ocorreu e o tipo de erro. 
+   * O programa cria um arquivo de log chamado `mailtoclient.log` que registra e armazena dados relativos ao programa, como o e-mail dos clientes encontrados, o nome do arquivo XML e PDF que foram enviados, e o horário em que o programa foi executado. Além disso, o programa envia um e-mail para o administrador do programa caso ocorra algum erro durante a execução do programa, com o horário em que o erro ocorreu e o tipo de erro. 
 
 # Conclusão
 
