@@ -1,5 +1,4 @@
 # Automação para envios de arquivos por E-mail
-
 ###  pre-release version
 
 Este script Python encontra-se em fase de pré-lançamento, sendo apenas um estudo de caso. Foi desenvolvido para enviar automaticamente arquivos XML e PDF por e-mail para a empresa e, quando aplicável, para os clientes.
