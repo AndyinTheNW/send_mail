@@ -292,10 +292,10 @@ except Exception as e:
     smtp_port = 587
 
     # Dados da conta de e-mail dos administradores do sistema
-    email_admins = ['anderson.pereira@bravocorp.com.br',
-                    # 'bruno.tonini@bravocorp.com.br',
-                    # 'jheniffer.duarte@bravocorp.com.br',
-                    # 'gabriel.martins@bravocorp.com.br'
+    email_admins = ['exampleAdmin@CorpMail.com.ru',
+                    # '',
+                    # '',
+                    # ''
                     ]
 
     for email_admin in email_admins:
