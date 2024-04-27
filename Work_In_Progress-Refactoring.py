@@ -1,3 +1,7 @@
+"""
+WORK IN PROGRESS
+"""
+
 import os
 import smtplib
 import shutil
