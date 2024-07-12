@@ -60,7 +60,6 @@ def clock_in(event):
         wait.until(EC.element_to_be_clickable((By.XPATH, XPATH_CONFIRM))).click()
         wait.until(EC.element_to_be_clickable((By.XPATH, XPATH_OK))).click()
         time.sleep(5)
-        # Voltar para a página de login
         driver.get(SITE)
 
         logging.info(f"Sucesso ao {event} às: %s", datetime.now())
