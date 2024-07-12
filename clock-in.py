@@ -24,7 +24,7 @@ logging.basicConfig(
 )
 
 options = webdriver.ChromeOptions()
-# options.add_argument("--headless")
+options.add_argument("--headless")
 
 driver = webdriver.Chrome(
     service=ChromeService(ChromeDriverManager().install()), options=options
